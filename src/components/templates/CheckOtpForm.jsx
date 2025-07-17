@@ -1,18 +1,19 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import {checkOtp} from "../../services/auth.js";
+import setCookie from "../../util/cookie.js";
 
 function CheckOtpForm({setStep, code, setCode, mobile}) {
     const {t} = useTranslation();
     const eventHandler = async (event) => {
         event.preventDefault();
-        console.log({mobile,code})
+        console.log({mobile, code})
 
         if (code.length !== 5) return;
         const {response, error} = await checkOtp(mobile, code);
         if (response) {
             console.log(response);
-
+            setCookie(response);
         } else if (error) {
             console.log(error);
         }
