@@ -2,6 +2,8 @@ import './App.css';
 import './i18n';
 import {useTranslation} from "react-i18next";
 import AuthPage from "./pages/AuthPage.jsx";
+import {BrowserRouter} from "react-router-dom";
+import Router from "./router/Router.jsx";
 
 function App() {
 
@@ -9,13 +11,14 @@ function App() {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng).then();
     };
-
-
     return (
         <>
+            <BrowserRouter>
+                <Router/>
+            </BrowserRouter>
             <div style={{direction: i18n.language === 'fa' ? 'rtl' : 'ltr', padding: 20}}>
                 <h1>{t('welcome')}</h1>
-                <p>{ t('greeting', {name: 'میلاد'})}</p>
+                <p>{t('greeting', {name: 'میلاد'})}</p>
 
                 <button onClick={() => changeLanguage('en')}>English</button>
                 <button onClick={() => changeLanguage('fa')}>فارسی</button>

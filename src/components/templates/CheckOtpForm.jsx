@@ -12,7 +12,6 @@ function CheckOtpForm({setStep, code, setCode, mobile}) {
         if (code.length !== 5) return;
         const {response, error} = await checkOtp(mobile, code);
         if (response) {
-            console.log(response);
             setCookie(response);
         } else if (error) {
             console.log(error);
