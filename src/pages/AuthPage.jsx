@@ -5,12 +5,12 @@ import SendOtpForm from "../components/templates/SendOtpForm.jsx";
 export default AuthPage;
 
 function AuthPage(props) {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(2);
     const [mobile, setMobile] = useState("");
     const [code, setCode] = useState("");
     const steps = {
-        1: <SendOtpForm setStep={setStep}  mobile={mobile} setMobile={setMobile}  />,
-        2: <CheckOtpForm setStep={setStep} />,
+        1: <SendOtpForm setStep={setStep} mobile={mobile} setMobile={setMobile}/>,
+        2: <CheckOtpForm setStep={setStep} mobile={mobile} code={code} setCode={setCode}/>,
     };
     return (
         <>
@@ -19,5 +19,5 @@ function AuthPage(props) {
             </div>
         </>
 
-);
+    );
 }
