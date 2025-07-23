@@ -4,18 +4,25 @@ import {useTranslation} from "react-i18next";
 import AuthPage from "./pages/AuthPage.jsx";
 import {BrowserRouter} from "react-router-dom";
 import Router from "./router/Router.jsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import defaultOptions from "./configs/reactQuery.js";
 
 function App() {
 
+    const queryClient = new QueryClient({
+        defaultOptions: defaultOptions
+    });
     const {t, i18n} = useTranslation();
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng).then();
     };
     return (
         <>
-            <BrowserRouter>
-                <Router/>
-            </BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                    <Router/>
+                </BrowserRouter>
+            </QueryClientProvider>
             <div style={{direction: i18n.language === 'fa' ? 'rtl' : 'ltr', padding: 20}}>
                 <h1>{t('welcome')}</h1>
                 <p>{t('greeting', {name: 'میلاد'})}</p>
